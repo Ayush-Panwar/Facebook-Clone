@@ -85,3 +85,16 @@ a {
   background: rgba(225, 225, 225, 0.768);
   z-index: 99;
 }
+/*--------- Hovers---------- */
+.hover1:hover {
+  background: var(--bg-secondary);
+}
+.hover2:hover {
+  background: var(--bg-third);
+}
+/*--------- Hovers---------- */
+.card {
+  height: 500px;
+  width: 500px;
+  background: red;
+}
