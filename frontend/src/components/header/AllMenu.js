@@ -107,7 +107,7 @@ export default function AllMenu() {
           {create.slice(0, 3).map((item, i) => (
             <div className="all_right_item hover1">
               <div className="all_right_circle">
-                <i className={item.icon}></i>
+                <i className={item.icon} key={i}></i>
               </div>
               {item.name}
             </div>
@@ -116,7 +116,7 @@ export default function AllMenu() {
           {create.slice(3, 9).map((item, i) => (
             <div className="all_right_item hover1">
               <div className="all_right_circle">
-                <i className={item.icon}></i>
+                <i className={item.icon} key={i}></i>
               </div>
               {item.name}
             </div>

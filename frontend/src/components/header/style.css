@@ -225,7 +225,7 @@ header {
   padding: 10px 1rem;
   box-shadow: -2px 1px 5px 2px var(--shadow-1);
   user-select: none;
-  coursor: default;
+  cursor: default;
 }
 .all_menu_header {
   font-size: 24px;
