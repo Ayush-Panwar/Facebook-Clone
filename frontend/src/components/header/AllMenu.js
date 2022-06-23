@@ -105,18 +105,18 @@ export default function AllMenu() {
         <div className="all_right">
           <div className="all_right_header">Create</div>
           {create.slice(0, 3).map((item, i) => (
-            <div className="all_right_item hover1">
+            <div className="all_right_item hover1" key={i}>
               <div className="all_right_circle">
-                <i className={item.icon} key={i}></i>
+                <i className={item.icon}></i>
               </div>
               {item.name}
             </div>
           ))}
           <div className="partition_line"></div>
           {create.slice(3, 9).map((item, i) => (
-            <div className="all_right_item hover1">
+            <div className="all_right_item hover1" key={i}>
               <div className="all_right_circle">
-                <i className={item.icon} key={i}></i>
+                <i className={item.icon}></i>
               </div>
               {item.name}
             </div>
