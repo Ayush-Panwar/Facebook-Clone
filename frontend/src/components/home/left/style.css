@@ -17,9 +17,6 @@
 .left_home:hover.scrollbar::-webkit-scrollbar-thumb {
   background: #aeaeafa1;
 }
-.left_home.touchscroll::-webkit-scrollbar-thumb {
-  background: #aeaeafa1;
-}
 
 .left_link {
   display: flex;
