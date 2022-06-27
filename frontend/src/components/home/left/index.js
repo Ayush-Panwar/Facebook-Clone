@@ -13,6 +13,9 @@ export default function LeftHome({ user }) {
   const view1 = useMediaQuery({
     query: "(max-height:760px)",
   });
+  const fb_copyright = useMediaQuery({
+    query: "(max-width:1056px)",
+  });
   return (
     <div className="left_home scrollbar">
       <Link to="/profile" className="left_link hover1">
@@ -88,6 +91,7 @@ export default function LeftHome({ user }) {
         <span>.</span>
         <Link to="/"> More </Link>
         <span>.</span>
+        {fb_copyright && <br />}
 
         <Link to="/"> Meta © 2022</Link>
         <span>.</span>
