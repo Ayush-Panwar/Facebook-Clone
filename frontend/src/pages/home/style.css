@@ -13,13 +13,13 @@
 @media (max-width: 1175px) {
   .stories,
   .createPost {
-    width: 84%;
+    width: 84% !important;
   }
   .home_middle {
     margin-left: 5%;
   }
   .right_home {
-    width: 18vw;
+    width: 18vw !important;
   }
 }
 @media (max-width: 1030px) {
@@ -29,17 +29,17 @@
   .shortcut_item span,
   .splitter,
   .fb_copyright {
-    display: none;
+    display: none !important;
   }
   .left_home {
-    width: 70px;
+    width: 70px !important;
   }
   .left_link {
     background: var(--bg-third);
     width: 55px;
     height: 55px;
-    border-radius: 50%;
-    display: grid;
+    border-radius: 50% !important;
+    display: grid !important;
     place-items: center;
   }
   .home_middle {
@@ -47,52 +47,52 @@
     margin-left: 55px;
   }
   .right_home {
-    width: 20vw;
+    width: 20vw !important;
   }
   .contacts_header_right {
-    right: 10%;
+    right: 10% !important;
   }
   .contact_circle {
-    width: 20px;
+    width: 20px !important;
   }
   .stories,
   .createPost {
-    width: 100%;
+    width: 100% !important;
   }
 }
 @media (max-width: 960px) {
   .createPost {
-    width: 93%;
+    width: 93% !important;
   }
   .stories {
-    width: 95%;
+    width: 95% !important;
   }
   .home_middle {
     margin-left: 10%;
   }
   .right_home {
-    left: 78%;
-    width: 20vw;
+    left: 78% !important;
+    width: 20vw !important;
   }
   .splitter1 {
-    width: 20vw;
+    width: 20vw !important;
   }
   .contact_circle {
-    width: 30px;
+    width: 30px !important;
   }
   .contacts_header_right {
-    right: 0;
+    right: 0 !important;
   }
 }
 @media (max-width: 885px) {
   .right_home {
-    display: none;
+    display: none !important;
   }
   .createPost {
-    width: 110%;
+    width: 110% !important;
   }
   .stories {
-    width: 113%;
+    width: 113% !important;
   }
   .home_middle {
     margin-left: 9%;
@@ -100,29 +100,32 @@
 }
 @media (max-width: 805px) {
   .stories {
-    grid-template-columns: repeat(6, 13vw);
+    grid-template-columns: repeat(6, 13vw) !important;
   }
   .story_profile_name,
   .story_create_text {
-    display: none;
+    display: none !important;
   }
   .create_story_card {
-    filter: brightness(96%);
+    filter: brightness(96%) !important;
   }
   .stories .white_circle {
-    right: 5px;
+    right: 5px !important;
   }
   .story_profile_pic {
-    width: 7vw;
-    height: 7vw;
+    width: 7vw !important;
+    height: 7vw !important;
   }
   .left_home::-webkit-scrollbar {
-    display: none;
+    display: none !important;
+  }
+  .popup {
+    width: 70vw !important;
   }
 }
 @media (max-width: 620px) {
   .left_home {
-    display: none;
+    display: none !important;
   }
   .home_middle {
     position: absolute;
@@ -130,26 +133,26 @@
   }
   .stories,
   .createPost {
-    width: 100%;
+    width: 100% !important;
   }
   .stories .white_circle {
-    display: none;
+    display: none !important;
   }
   .stories {
-    grid-template-columns: repeat(6, 14vw);
+    grid-template-columns: repeat(6, 14vw) !important;
   }
   .story,
   .create_story_card {
-    height: 30vw;
+    height: 30vw !important;
   }
   .createPost_icon {
-    font-size: 12px;
+    font-size: 12px !important;
   }
   .open_post {
-    font-size: 16px;
+    font-size: 16px !important;
   }
   .createPost_icon svg {
-    width: 20px;
+    width: 20px !important;
   }
 }
 /*----------------Activate popup------------------- */

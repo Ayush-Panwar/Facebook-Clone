@@ -34,6 +34,9 @@ export default function Activate() {
       setSuccess(data.message);
       Cookies.set("user", JSON.stringify({ ...user, verified: true }));
       dispatch({ type: "VERIFY", payload: true });
+      setTimeout(() => {
+        navigate("/");
+      }, 3000);
     } catch (error) {
       setError(error.response.data.message);
     }
