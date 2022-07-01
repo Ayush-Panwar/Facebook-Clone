@@ -91,24 +91,23 @@ exports.register = async (req, res) => {
 };
 exports.activateAccount = async (req, res) => {
   try {
-    const validuser = req.user.id;
+    const validUser = req.user.id;
     const { token } = req.body;
     const user = jwt.verify(token, process.env.TOKEN_SECRET);
     const check = await User.findById(user.id);
+    if (validUser != user.id) {
+      return res.status(400).json({
+        message: "You dont have authorization to complete this operation.",
+      });
+    }
     if (check.verified == true) {
-      return res
-        .status(400)
-        .json({
-          message: "you dont have authorization to complete this operation",
-        });
+      return res.status(400).json({
+        message: "This email is already activated.",
+      });
     } else {
       await User.findByIdAndUpdate(user.id, { verified: true });
-      if (validuser != user) {
-        res
-          .status(200)
-          .json({ message: "Account has been activated successfully" });
-      }
-      res
+
+      return res
         .status(200)
         .json({ message: "Account has been activated successfully" });
     }
@@ -150,4 +149,26 @@ exports.login = async (req, res) => {
 exports.auth = (req, res) => {
   console.log(req.user);
   res.json("welcome from auth");
+};
+exports.sendverification = async (req, res) => {
+  try {
+    const id = req.user.id;
+    const user = await User.findById(id);
+    if (user.verified == true) {
+      return res
+        .status(400)
+        .json({ message: "This account is already activated." });
+    }
+    const emailverificationToken = generateToken(
+      { id: user._id.toString() },
+      "30m"
+    );
+    const url = `${process.env.BASE_URL}/activate/${emailverificationToken}`;
+    sendverificationEmail(user.email, user.first_name, url);
+    return res.status(200).json({
+      message: "Email verification link has been sent to your email.",
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };

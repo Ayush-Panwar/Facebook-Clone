@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Reset from "./pages/reset";
 import Home from "./pages/home";
 import Activate from "./pages/home/activate.js";
 import Login from "./pages/login/login";
@@ -17,6 +18,7 @@ function App() {
         <Route element={<NotLoggedInRoutes />}>
           <Route path="/login" element={<Login />} exact />
         </Route>
+        <Route path="/reset" element={<Reset />} />
       </Routes>
     </div>
   );
