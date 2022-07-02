@@ -1,18 +1,25 @@
 import "./style.css";
 import { useField, ErrorMessage } from "formik";
 import { useMediaQuery } from "react-responsive";
-export default function LoginInput(props) {
+export default function LoginInput({ placeholder, bottom, ...props }) {
   const [field, meta] = useField(props);
   const desktopView = useMediaQuery({
-    query: "(min-width:850px)",
+    query: "(min-width: 850px)",
+  });
+  const view1050 = useMediaQuery({
+    query: "(max-width: 1050px)",
   });
 
   return (
     <div className="input_wrap">
-      {meta.touched && meta.error && !props.bottom && (
+      {meta.touched && meta.error && !bottom && (
         <div
           className={
-            desktopView ? "input_error input_error_desktop" : "input_error"
+            desktopView && view1050 && field.name === "password"
+              ? "input_error input_error_desktop err_res_password"
+              : desktopView
+              ? "input_error input_error_desktop"
+              : "input_error"
           }
           style={{ transform: "translateY(3px)" }}
         >
@@ -24,19 +31,22 @@ export default function LoginInput(props) {
           )}
         </div>
       )}
-
       <input
         className={meta.touched && meta.error ? "input_error_border" : ""}
         type={field.type}
         name={field.name}
-        placeholder={field.placeholder}
+        placeholder={placeholder}
         {...field}
         {...props}
       />
-      {meta.touched && meta.error && props.bottom && (
+      {meta.touched && meta.error && bottom && (
         <div
           className={
-            desktopView ? "input_error input_error_desktop" : "input_error"
+            desktopView && view1050 && field.name === "conf_password"
+              ? "input_error conf_password_error"
+              : desktopView
+              ? "input_error input_error_desktop"
+              : "input_error"
           }
           style={{
             transform: "translateY(2px)",
@@ -52,10 +62,11 @@ export default function LoginInput(props) {
           )}
         </div>
       )}
+
       {meta.touched && meta.error && (
         <i
           className="error_icon"
-          style={{ top: `${!props.bottom && !desktopView ? "63%" : "15px"}` }}
+          style={{ top: `${!bottom && !desktopView ? "63%" : "15px"}` }}
         ></i>
       )}
     </div>

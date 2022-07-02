@@ -5,10 +5,20 @@ import Cookies from "js-cookie";
 import { Form, Formik } from "formik";
 import { useState } from "react";
 import LoginInput from "../../components/inputs/logininputs";
+import SearchAccount from "./SearchAccount";
+import SendEmail from "./SendEmail";
+import CodeVerification from "./CodeVerification";
+import Footer from "../../components/login/Footer";
+import ChangePassword from "./ChangePassword";
+
 export default function Reset() {
   const { user } = useSelector((state) => ({ ...state }));
   const dispatch = useDispatch();
-  const { email, setEmail } = useState();
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+  const [password, setPassword] = useState("");
+  const [conf_password, setConf_password] = useState("");
+  const [visible, setVisible] = useState(3);
   const navigate = useNavigate();
   const { error, setError } = useState("");
   const logout = () => {
@@ -36,35 +46,29 @@ export default function Reset() {
         )}
       </div>
       <div className="reset_wrap">
-        <div className="reset_form">
-          <div className="reset_form_header">Find Your Account</div>
-          <div className="reset_form_text">
-            Please enter your email address or mobile number to search for your
-            account.
-          </div>
-          <Formik enableReinitialize initialValue={{ email }}>
-            {(formik) => (
-              <Form>
-                <LoginInput
-                  type="text"
-                  name="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email address or phone number"
-                />
-                {error && <div className="error_text">{error}</div>}
-                <div className="reset_form_btns">
-                  <Link to="/login" className="grey_btn">
-                    Cancel
-                  </Link>
-                  <button type="submit" className="blue_btn">
-                    Search
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
-        </div>
+        {visible === 0 && (
+          <SearchAccount email={email} setEmail={setEmail} error={error} />
+        )}
+        {visible === 1 && <SendEmail user={user} />}
+        {visible === 2 && (
+          <CodeVerification
+            user={user}
+            code={code}
+            setCode={setCode}
+            error={error}
+          />
+        )}
+        {visible === 3 && (
+          <ChangePassword
+            password={password}
+            conf_password={conf_password}
+            setPassword={setPassword}
+            setConf_password={setConf_password}
+            error={error}
+          />
+        )}
       </div>
+      <Footer />
     </div>
   );
 }

@@ -153,6 +153,72 @@
 
 /*---------------Register------------*/
 
+/* ------------Media Queries---------- */
+@media (min-width: 539px) {
+  .login_2_wrap {
+    max-width: 520px;
+  }
+  .register {
+    width: 400px;
+  }
+  .reg_line {
+    flex-direction: row;
+  }
+  .reg_grid select,
+  .reg_grid label {
+    width: 110px;
+  }
+  .reg_grid .input_error {
+    width: 350px;
+  }
+}
+@media (min-width: 650px) {
+  .login_footer_wrap {
+    max-width: 520px;
+  }
+}
+@media (min-width: 850px) {
+  .login_wrap {
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .login_1 {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin-bottom: 15vh;
+  }
+
+  .login_1 img {
+    width: 300px;
+    margin-left: -1.7rem;
+  }
+  .login_1 span {
+    font-size: 28px;
+  }
+  .login_2_wrap {
+    width: 400px;
+  }
+  .input_wrap {
+    width: 360px !important;
+  }
+  .login_footer_wrap {
+    max-width: 900px;
+  }
+}
+@media (max-height: 725px) and (max-width: 400px) {
+  .login_footer {
+    height: 22%;
+  }
+}
+@media (max-height: 850px) and (max-width: 850px) {
+  .login_footer {
+    height: 22%;
+  }
+}
+
 @media (max-height: 725px) and (max-width: 400px) {
   .login_wrap {
     height: 78%;
@@ -165,3 +231,5 @@
     margin-bottom: 80px;
   }
 }
+
+/* ------------Media Queries---------- */
