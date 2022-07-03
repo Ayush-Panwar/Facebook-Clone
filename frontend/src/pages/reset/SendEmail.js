@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import LoginInput from "../../components/inputs/logininputs";
-export default function SendEmail({ user }) {
+export default function SendEmail({ userInfos }) {
   return (
     <div className="reset_form dynamic_height">
       <div className="reset_form_header">Reset Your Password</div>
@@ -15,13 +15,13 @@ export default function SendEmail({ user }) {
             <input type="radio" name="" id="email " checked readOnly />
             <div className="label_col">
               <span>Send code via email</span>
-              <span>email@email.email</span>
+              <span>{userInfos.email}</span>
             </div>
           </label>
         </div>
         <div className="reset_right">
-          <img src={user.picture} alt="" />
-          <span>email@email.email</span>
+          <img src={userInfos.picture} alt="" />
+          <span>{userInfos.email}</span>
           <span>Facebook user</span>
         </div>
       </div>
