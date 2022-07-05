@@ -18,7 +18,7 @@ export default function LeftHome({ user }) {
   });
   return (
     <div className="left_home scrollbar">
-      <Link to="/profile" className="left_link hover1">
+      <Link to="/profile" className="left_link hover2">
         <img src={user?.picture} alt="" />
         <span>
           {user?.first_name} {user?.last_name}
@@ -33,7 +33,7 @@ export default function LeftHome({ user }) {
         />
       ))}
       {!visible && (
-        <div className="left_link hover1" onClick={() => setVisible(true)}>
+        <div className="left_link hover2" onClick={() => setVisible(true)}>
           <div className="small_circle">
             <ArrowDown1 />
           </div>
@@ -50,7 +50,7 @@ export default function LeftHome({ user }) {
               notification={link.notification}
             />
           ))}
-          <div className="left_link hover1 " onClick={() => setVisible(false)}>
+          <div className="left_link hover2 " onClick={() => setVisible(false)}>
             <div className="small_circle rotate360">
               <ArrowDown1 />
             </div>

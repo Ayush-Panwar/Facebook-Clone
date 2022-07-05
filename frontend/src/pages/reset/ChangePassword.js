@@ -1,15 +1,22 @@
 import { Form, Formik } from "formik";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginInput from "../../components/inputs/logininputs";
 import * as Yup from "yup";
+import axios from "axios";
+
 export default function ChangePassword({
   password,
   setPassword,
   conf_password,
   setConf_password,
   error,
+  setError,
+  loading,
+  setLoading,
+  userInfos,
 }) {
+  const navigate = useNavigate();
   const validatePassword = Yup.object({
     password: Yup.string()
       .required(
@@ -19,8 +26,23 @@ export default function ChangePassword({
       .max(36, "Password cant be more than 36 character"),
     conf_password: Yup.string()
       .required("Confirm your password")
-      .oneOf([Yup.ref("passowrd")], "Passwords must match."),
+      .oneOf([Yup.ref("password")], "Passwords must match."),
   });
+  const changePassword = async () => {
+    try {
+      setLoading(true);
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/changePassword`, {
+        email,
+        password,
+      });
+      setError("");
+      navigate("/");
+    } catch (error) {
+      setLoading(false);
+      setError(error.response.data.message);
+    }
+  };
+  const { email } = userInfos;
   return (
     <div className="reset_form" style={{ height: "320px" }}>
       <div className="reset_form_header">Change Password</div>
@@ -29,6 +51,9 @@ export default function ChangePassword({
         enableReinitialize
         initialValues={{ password, conf_password }}
         validationSchema={validatePassword}
+        onSubmit={() => {
+          changePassword();
+        }}
       >
         {(formik) => (
           <Form>
