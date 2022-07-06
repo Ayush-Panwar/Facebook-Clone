@@ -26,7 +26,7 @@ export default function EmojiPickerBackgrounds({ text, setText, user, type2 }) {
           ref={textRef}
           maxLength="100"
           value={text}
-          placeholder={`What's on your mind, ${user.first_name} ?`}
+          placeholder={`What's on your mind, ${user?.first_name} ?`}
           className={`post_input ${type2 && "input2"}`}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
