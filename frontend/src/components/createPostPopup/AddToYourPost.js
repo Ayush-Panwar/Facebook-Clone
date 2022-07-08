@@ -11,8 +11,9 @@ export default function AddToYourPost({ setShowPrev }) {
       >
         <Photo color="#45bd62" />
       </div>
-
-      <i className="tag_icon"></i>
+      <div className="post_header_right hover1">
+        <i className="tag_icon"></i>
+      </div>
       <div className="post_header_right hover1">
         <Feeling color="#f7b928" />
       </div>
