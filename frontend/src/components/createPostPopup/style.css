@@ -131,6 +131,7 @@
   display: grid;
   place-items: center;
   cursor: pointer;
+  border-radius: 50%;
 }
 .post_submit {
   width: calc(100% - 18px);

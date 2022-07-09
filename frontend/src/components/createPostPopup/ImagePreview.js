@@ -15,11 +15,11 @@ export default function ImagePreview({
     let files = Array.from(e.target.files);
     files.forEach((img) => {
       if (
-        img.type != "image/jpeg" &&
-        img.type != "image/png" &&
-        img.type != "image/webp" &&
-        img.type != "image/gif" &&
-        img.type != "image/jpg"
+        img.type !== "image/jpeg" &&
+        img.type !== "image/png" &&
+        img.type !== "image/webp" &&
+        img.type !== "image/gif" &&
+        img.type !== "image/jpg"
       ) {
         setError(
           `${img.name} format is unsupported ! only Jpeg , Png , Webp , Gif, Jpg are allowed .`

@@ -63,7 +63,7 @@ export default function CreatePostPopup({ user, setVisible }) {
         user.token
       );
       setLoading(false);
-      if (res == "ok") {
+      if (res === "ok") {
         setText("");
         setImages("");
         setVisible(false);
