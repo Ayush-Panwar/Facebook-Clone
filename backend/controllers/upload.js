@@ -28,13 +28,13 @@ const uploadToCloudinary = async (file, path) => {
       {
         folder: path,
       },
-      (err, res) => {
-        if (err) {
+      (error, result) => {
+        if (error) {
           removeTmp(file.tempFilePath);
           return res.status(400).json({ message: "Upload image failed" });
         }
         resolve({
-          url: res.secure_url,
+          url: result.secure_url,
         });
       }
     );
