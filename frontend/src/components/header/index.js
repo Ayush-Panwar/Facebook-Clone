@@ -78,7 +78,7 @@ export default function Header() {
         </Link>
       </div>
       <div className="header_right">
-        <Link to="/" className="profile_link hover1">
+        <Link to="/profile" className="profile_link hover1">
           <img src={user.picture} alt="" />
           <span>{user.first_name}</span>
         </Link>
