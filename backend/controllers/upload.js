@@ -48,7 +48,7 @@ const removeTmp = (path) => {
 };
 exports.listImages = async (req, res) => {
   const { path, sort, max } = req.body;
-  cloudinay.v2.search
+  cloudinary.v2.search
     .expression(`${path}`)
     .sort_by("public_id", `${sort}`)
     .then((result) => {
