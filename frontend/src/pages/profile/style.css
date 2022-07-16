@@ -82,7 +82,7 @@
 }
 .profile_w_img {
   position: relative;
-  z-index: 9999;
+  z-index: 9;
 }
 .profile_w_bg {
   width: 180px;

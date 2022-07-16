@@ -51,6 +51,8 @@ exports.listImages = async (req, res) => {
   cloudinary.v2.search
     .expression(`${path}`)
     .sort_by("public_id", `${sort}`)
+    .max_results(max)
+    .execute()
     .then((result) => {
       res.json(result);
     })

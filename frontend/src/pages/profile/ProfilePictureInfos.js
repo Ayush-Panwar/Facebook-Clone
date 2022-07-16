@@ -1,6 +1,11 @@
-export default function ProfilePictureInfos({ profile }) {
+import { useState } from "react";
+import ProfilePicture from "../../components/profilePicture";
+
+export default function ProfilePictureInfos({ profile, visitor }) {
+  const [show, setShow] = useState(true);
   return (
     <div className="profile_img_wrap">
+      {show && <ProfilePicture setShow={setShow} />}
       <div className="profile_w_left">
         <div className="profile_w_img">
           <div
@@ -11,29 +16,35 @@ export default function ProfilePictureInfos({ profile }) {
               backgroundSize: "180px 180px",
             }}
           ></div>
-          <div className="profile_circle">
-            <i className="camera_filled_icon"></i>
-          </div>
+          {!visitor && (
+            <div className="profile_circle hover1">
+              <i className="camera_filled_icon"></i>
+            </div>
+          )}
         </div>
         <div className="profile_w_col">
           <div className="profile_name">
             {profile.first_name} {profile.last_name}
-            <div className="othername">Othername</div>
+            <div className="othername">(Othername)</div>
           </div>
           <div className="profile_friend_count"></div>
           <div className="profile_friend_imgs"></div>
         </div>
       </div>
-      <div className="profile_w_right">
-        <div className="blue_btn">
-          <img src="../../../icons/plus.png" alt="" className="invert" />
-          <span>Add to story</span>
+      {visitor ? (
+        ""
+      ) : (
+        <div className="profile_w_right">
+          <div className="blue_btn">
+            <img src="../../../icons/plus.png" alt="" className="invert" />
+            <span>Add to story</span>
+          </div>
+          <div className="gray_btn">
+            <i className="edit_icon"></i>
+            <span>Edit profile</span>
+          </div>
         </div>
-        <div className="gray_btn">
-          <i className="edit_icon"></i>
-          <span>Edit profile</span>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

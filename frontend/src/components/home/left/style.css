@@ -124,6 +124,9 @@
   width: 96%;
   margin-top: 2rem;
   padding-bottom: 16px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-secondary);
 }
 .fb_copyright a:hover {
   text-decoration: underline;

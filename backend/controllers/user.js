@@ -5,6 +5,7 @@ const {
 } = require("../helpers/validation");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const Post = require("../models/Post");
 const bcrypt = require("bcrypt");
 const { generateToken } = require("../helpers/tokens");
 const { sendverificationEmail, sendResetCode } = require("../helpers/mailer");
@@ -232,8 +233,20 @@ exports.getProfile = async (req, res) => {
     if (!profile) {
       return res.json({ ok: false });
     }
-    res.json(profile);
+    const posts = await Post.find({ user: profile._id })
+      .populate("user")
+      .sort({ createdAt: "desc" });
+
+    res.json({ ...profile.toObject(), posts });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+exports.updateProfilePicture = async (req, res) => {
+  try {
+    const { url } = req.body;
+    const res = await User.findByIdAndUpdate(req.user.id, { picture: url });
+    res.json(url);
+  } catch (error) {}
 };
