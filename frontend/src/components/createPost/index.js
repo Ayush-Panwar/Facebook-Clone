@@ -30,7 +30,9 @@ export default function CreatePost({ user, setVisible, profile }) {
             <i className="lifeEvent_icon"></i>Life Event
           </div>
         ) : (
-          <div className="createPost_icon hover1"></div>
+          <div className="createPost_icon hover1">
+            <Feeling color="#f7b928" />
+          </div>
         )}
       </div>
     </div>

@@ -10,7 +10,7 @@ exports.createPost = async (req, res) => {
 exports.getAllPost = async (req, res) => {
   try {
     const posts = await Post.find()
-      .populate("user", "first_name last_name picture gender ")
+      .populate("user", "first_name last_name picture gender cover ")
       .sort({ createdAt: "desc" });
     res.json(posts);
   } catch (error) {

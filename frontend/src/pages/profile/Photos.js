@@ -3,40 +3,7 @@ import { useEffect, useReducer } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { photosReducer } from "../../functions/reducers";
 
-export default function Photos({ userName, token }) {
-  const [{ loading, error, photos }, dispatch] = useReducer(photosReducer, {
-    loading: false,
-    profile: {},
-    error: "",
-  });
-  console.log(userName);
-  const navigate = useNavigate();
-  useEffect(() => {
-    getPhotos();
-  }, [userName]);
-  const path = `${userName}/*`;
-  const max = 30;
-  const sort = "desc";
-
-  const getPhotos = async () => {
-    try {
-      dispatch({ type: "PHOTOS_REQUEST" });
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/listImages`,
-        { path, sort, max },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      dispatch({ type: "PHOTOS_SUCCESS", payload: data });
-    } catch (error) {
-      dispatch({ type: "PHOTOS_ERROR", payload: error.response.data.message });
-    }
-  };
-  console.log(photos);
+export default function Photos({ userName, token, photos }) {
   return (
     <div className="profile_card">
       <div className="profile_card_header">

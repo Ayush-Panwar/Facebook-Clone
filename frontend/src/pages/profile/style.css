@@ -55,7 +55,7 @@
   border-radius: 10px;
   box-shadow: 0 12px 28px 0 var(--shadow-1), 0 2px 4px 0 var(--shadow-2),
     inset 0 0 0 px var(--shadow-inset);
-  z-index: 99999;
+  z-index: 9999;
 }
 .open_cover_menu_item {
   display: flex;
@@ -82,7 +82,7 @@
 }
 .profile_w_img {
   position: relative;
-  z-index: 9;
+  z-index: 999;
 }
 .profile_w_bg {
   width: 180px;
@@ -125,6 +125,18 @@
 .invert {
   filter: invert(100%);
 }
+.cover_cropper {
+  height: 100%;
+}
+.cover_cropper img {
+  object-fit: cover;
+  width: 100%;
+}
+.cover_cropper .reactEasyCrop_Container {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
 /*--Menu-------*/
 .profile_menu_wrap {
   position: relative;

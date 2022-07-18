@@ -120,7 +120,7 @@ a {
   right: 0;
   bottom: 0;
   background: rgba(225, 225, 225, 0.768);
-  z-index: 99;
+  z-index: 9999;
 }
 /*--------- Hovers---------- */
 .hover1:hover {
