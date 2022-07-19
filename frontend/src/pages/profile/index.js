@@ -14,6 +14,7 @@ import GridPost from "./GridPost";
 import Post from "../../components/post";
 import Photos from "./Photos";
 import Friends from "./Friends";
+import Intro from "../../components/intro";
 export default function Profile({ setVisible }) {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -74,7 +75,11 @@ export default function Profile({ setVisible }) {
       <Header page="profile" />
       <div className="profile_top">
         <div className="profile_container">
-          <Cover cover={profile.cover} visitor={visitor} />
+          <Cover
+            cover={profile.cover}
+            visitor={visitor}
+            photos={photos.resources}
+          />
           <ProfilePictureInfos
             profile={profile}
             visitor={visitor}
@@ -89,6 +94,7 @@ export default function Profile({ setVisible }) {
             <PpleYouMayKnow />
             <div className="profile_grid">
               <div className="profile_left">
+                <Intro detailss={profile.details} visitor={visitor} />
                 <Photos
                   userName={userName}
                   token={user.token}
