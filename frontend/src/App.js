@@ -20,7 +20,9 @@ function App() {
     posts: [],
     error: "",
   });
-  useEffect(() => getAllPosts(), []);
+  useEffect(() => {
+    getAllPosts();
+  }, []);
   const getAllPosts = async () => {
     try {
       dispatch({ type: "POSTS_REQUEST" });

@@ -4,56 +4,30 @@ import "./style.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import EditDetails from "./EditDetails";
-export default function Intro({ detailss, visitor, setOthername }) {
+export default function Intro({
+  detailss,
+  visitor,
+  setOthername,
+  setVisibleEditDetails,
+  details,
+  visibleEditDetails,
+  setDetails,
+  infos,
+  setInfos,
+  max,
+  setMax,
+  handleChange,
+  updateDetails,
+  showBio,
+  setShowBio,
+}) {
   const { user } = useSelector((state) => ({ ...state }));
-  const [details, setDetails] = useState();
-  const [visible, setVisible] = useState(false);
+
   useEffect(() => {
     setDetails(detailss);
     setInfos(detailss);
   }, [detailss]);
-  const initial = {
-    bio: details?.bio ? details.bio : "",
-    otherName: details?.otherName ? details.otherName : "",
-    job: details?.job ? details.job : "",
-    workplace: details?.workplace ? details.workplace : "",
-    highSchool: details?.highSchool ? details.highSchool : "",
-    college: details?.college ? details.college : "",
-    currentCity: details?.currentCity ? details.currentCity : "",
-    hometown: details?.hometown ? details.hometown : "",
-    relationship: details?.relationship ? details.relationship : "",
-    instagram: details?.instagram ? details.instagram : "",
-  };
-  const [infos, setInfos] = useState(initial);
-  const [showBio, setShowBio] = useState(false);
-  const [max, setMax] = useState(infos?.bio ? 100 - infos?.bio.length : 100);
 
-  const updateDetails = async () => {
-    try {
-      console.log("sent");
-      const { data } = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/updateDetails`,
-        {
-          infos,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
-      setShowBio(false);
-      setDetails(data);
-      setOthername(data.otherName);
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInfos({ ...infos, [name]: value });
-    setMax(100 - e.target.value.length);
-  };
   return (
     <div className="profile_card">
       <div className="profile_card_header">Intro</div>
@@ -144,6 +118,7 @@ export default function Intro({ detailss, visitor, setOthername }) {
           <a
             href={`https://www.instagram.com/${details?.instagram}`}
             target="_blank"
+            rel="noreferrer"
           >
             {details?.instagram}
           </a>
@@ -152,19 +127,10 @@ export default function Intro({ detailss, visitor, setOthername }) {
       {!visitor && (
         <button
           className="gray_btn hover1 w100"
-          onClick={() => setVisible(true)}
+          onClick={() => setVisibleEditDetails(true)}
         >
           Edit Details
         </button>
-      )}
-      {visible && !visitor && (
-        <EditDetails
-          details={details}
-          handleChange={handleChange}
-          updateDetails={updateDetails}
-          infos={infos}
-          setVisible={setVisible}
-        />
       )}
 
       {!visitor && (

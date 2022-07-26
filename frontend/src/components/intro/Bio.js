@@ -34,6 +34,7 @@ export default function Bio({
           onChange={handleChange}
         ></textarea>
       )}
+
       {!detail && <div className="remaining">{max} characters remaining</div>}
       <div className="flex">
         <div className="flex flex_left">
@@ -50,7 +51,7 @@ export default function Bio({
             className="blue_btn"
             onClick={() => {
               updateDetails();
-              setShow(false);
+              !detail ? setShowBio(false) : setShow(false);
             }}
           >
             Save

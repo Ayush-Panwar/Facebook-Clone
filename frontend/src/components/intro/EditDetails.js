@@ -6,15 +6,18 @@ export default function EditDetails({
   handleChange,
   updateDetails,
   infos,
-  setVisible,
+  setVisibleEditDetails,
 }) {
   const modal = useRef(null);
-  useOnCLickOutside(modal, () => setVisible(false));
+  useOnCLickOutside(modal, () => setVisibleEditDetails(false));
   return (
     <div className="blur">
       <div className="postBox infosBox" ref={modal}>
         <div className="box_header">
-          <div className="small_circle" onClick={() => setVisible(false)}>
+          <div
+            className="small_circle"
+            onClick={() => setVisibleEditDetails(false)}
+          >
             <i className="exit_icon"></i>
           </div>
           <span>Edit Details</span>

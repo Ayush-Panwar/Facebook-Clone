@@ -16,6 +16,8 @@ import Photos from "./Photos";
 import Friends from "./Friends";
 import Intro from "../../components/intro";
 import { useMediaQuery } from "react-responsive";
+import EditDetails from "../../components/intro/EditDetails";
+import { useStateIfMounted } from "use-state-if-mounted";
 export default function Profile({ setVisible }) {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -28,20 +30,73 @@ export default function Profile({ setVisible }) {
     profile: {},
     error: "",
   });
+  const [details, setDetails] = useStateIfMounted();
+  const [visibleEditDetails, setVisibleEditDetails] = useState(false);
   useEffect(() => {
-    getProfile();
+    const controller = new AbortController();
+    getProfile(controller);
+    return () => {
+      controller.abort();
+    };
   }, [userName]);
   useEffect(() => {
     setOthername(profile?.details?.otherName);
   }, [profile]);
 
   var visitor = userName === user.username ? false : true;
-  const [othername, setOthername] = useState();
+  const [othername, setOthername] = useStateIfMounted();
   const path = `${userName}/*`;
-  const max = 30;
+  const maxImages = 30;
   const sort = "desc";
+  const initial = {
+    bio: details?.bio ? details.bio : "",
+    otherName: details?.otherName ? details.otherName : "",
+    job: details?.job ? details.job : "",
+    workplace: details?.workplace ? details.workplace : "",
+    highSchool: details?.highSchool ? details.highSchool : "",
+    college: details?.college ? details.college : "",
+    currentCity: details?.currentCity ? details.currentCity : "",
+    hometown: details?.hometown ? details.hometown : "",
+    relationship: details?.relationship ? details.relationship : "",
+    instagram: details?.instagram ? details.instagram : "",
+  };
+  const [infos, setInfos] = useStateIfMounted(initial);
+  const [showBio, setShowBio] = useState(false);
 
-  const getProfile = async () => {
+  const [max, setMax] = useStateIfMounted(
+    infos?.bio ? 100 - infos?.bio.length : 100
+  );
+  useEffect(() => {
+    setMax(infos?.bio ? 100 - infos?.bio.length : 100);
+  }, [infos]);
+  const updateDetails = async () => {
+    try {
+      console.log("sent");
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_BACKEND_URL}/updateDetails`,
+        {
+          infos,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      setShowBio(false);
+      setDetails(data);
+      setOthername(data.otherName);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInfos({ ...infos, [name]: value });
+    setMax(100 - e.target.value.length);
+  };
+
+  const getProfile = async (controller) => {
     try {
       dispatch({
         type: "PROFILE_REQUEST",
@@ -52,6 +107,7 @@ export default function Profile({ setVisible }) {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
+          signal: controller.signal,
         }
       );
       if (data.ok === false) {
@@ -60,7 +116,7 @@ export default function Profile({ setVisible }) {
         try {
           const images = await axios.post(
             `${process.env.REACT_APP_BACKEND_URL}/listImages`,
-            { path, sort, max },
+            { path, sort, maxImages },
             {
               headers: {
                 Authorization: `Bearer ${user.token}`,
@@ -85,15 +141,15 @@ export default function Profile({ setVisible }) {
   };
   const profileTop = useRef(null);
   const leftSide = useRef(null);
-  const [height, setHeight] = useState();
-  const [leftHeight, setLeftHeight] = useState();
-  const [scrollHeight, setScrollHeight] = useState();
+  const [height, setHeight] = useStateIfMounted();
+  const [leftHeight, setLeftHeight] = useStateIfMounted();
+  const [scrollHeight, setScrollHeight] = useStateIfMounted();
   useEffect(() => {
     setHeight(profileTop.current.clientHeight + 300);
     setLeftHeight(leftSide.current.clientHeight);
     window.addEventListener("scroll", getScroll, { passive: true });
     return () => {
-      window.addEventListener("scroll", getScroll, { passive: true });
+      window.removeEventListener("scroll", getScroll, { passive: true });
     };
   }, [loading, scrollHeight]);
   const check = useMediaQuery({
@@ -140,6 +196,18 @@ export default function Profile({ setVisible }) {
                   detailss={profile.details}
                   visitor={visitor}
                   setOthername={setOthername}
+                  setVisibleEditDetails={setVisibleEditDetails}
+                  details={details}
+                  setDetails={setDetails}
+                  visible={visibleEditDetails}
+                  infos={infos}
+                  setInfos={setInfos}
+                  updateDetails={updateDetails}
+                  handleChange={handleChange}
+                  showBio={showBio}
+                  setShowBio={setShowBio}
+                  max={max}
+                  setMax={setMax}
                 />
                 <Photos
                   username={userName}
@@ -169,6 +237,16 @@ export default function Profile({ setVisible }) {
                   <CreatePost user={user} profile setVisible={setVisible} />
                 )}
                 <GridPosts />
+                {visibleEditDetails && !visitor && (
+                  <EditDetails
+                    details={details}
+                    handleChange={handleChange}
+                    updateDetails={updateDetails}
+                    infos={infos}
+                    setVisibleEditDetails={setVisibleEditDetails}
+                  />
+                )}
+
                 <div className="posts">
                   {profile.posts && profile.posts.length ? (
                     profile.posts.map((post) => (
