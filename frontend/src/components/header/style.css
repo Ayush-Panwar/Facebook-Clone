@@ -550,13 +550,17 @@ header {
     display: none;
   }
   .mmenu {
-    width: 340px;
+    width: 290px;
   }
   .all_menu {
-    right: -6rem;
+    width: 290px;
+    left: -10rem;
   }
   .header_middle {
     transform: translateX(-20%);
+  }
+  .search_area {
+    width: 310px;
   }
 }
 /* ----------------responsive------------------- */

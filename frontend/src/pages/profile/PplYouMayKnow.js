@@ -1,14 +1,12 @@
-import React from "react";
 import { Dots } from "../../svg";
 import { stories } from "../../data/home";
-import AddFriendSmallCard from "./AddFriendSmallCad";
-
-export default function PpleYouMayKnow() {
+import AddFriendSmallCard from "./AddFriendSmallCard";
+export default function PplYouMayKnow() {
   return (
     <div className="pplumayknow">
       <div className="pplumayknow_header">
-        People You May know
-        <div className="postheader_right ppl_circle">
+        People You May Know
+        <div className="post_header_right ppl_circle hover1">
           <Dots />
         </div>
       </div>

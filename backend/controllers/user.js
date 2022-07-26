@@ -272,5 +272,21 @@ exports.updateDetails = async (req, res) => {
     res.json(updated.details);
   } catch (error) {
     res.status(500).json({ message: error.message });
+    console.log(error);
+  }
+};
+exports.addFriend = async (req, res) => {
+  try {
+    if (req.user.id != req.params.id) {
+      const sender = await User.finById(req.user.id);
+      const receiver = await User.finById(req.params.id);
+    } else {
+      return res
+        .status(400)
+        .json({ message: "You can't send request to yourself" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+    console.log(error);
   }
 };
