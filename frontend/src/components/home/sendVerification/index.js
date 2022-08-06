@@ -28,7 +28,7 @@ export default function SendVerification({ user }) {
           sendVerificationLink();
         }}
       >
-        Click here to resend notification link{" "}
+        Click here to resend notification link
       </a>
       {success && <div className="success_text">{success}</div>}
       {error && <div className="error_text">{error}</div>}

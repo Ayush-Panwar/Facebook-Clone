@@ -9,7 +9,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 import getCroppedImg from "../../helpers/getCroppedImg";
 import OldCovers from "./OldCovers";
 
-export default function Cover({ cover, visitor, photos }) {
+export default function Cover({ cover, visitor, photos, setCover }) {
   const [showCoverMenu, setShowCoverMenu] = useState(false);
   const [coverPicture, setCoverPicture] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ export default function Cover({ cover, visitor, photos }) {
   const { user } = useSelector((state) => ({ ...state }));
   const menuRef = useRef(null);
   const refInput = useRef(null);
-  const cRef = useRef(null);
+
   useClickOutside(menuRef, () => setShowCoverMenu(false));
   const [error, setError] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
@@ -92,7 +92,7 @@ export default function Cover({ cover, visitor, photos }) {
       const res = await uploadImages(formData, path, user.token);
 
       const updated_picture = await updateCover(res[0].url, user.token);
-      if (updated_picture === "ok") {
+      if (updated_picture.status === "ok") {
         const new_post = await createPost(
           "coverPicture",
           null,
@@ -101,11 +101,11 @@ export default function Cover({ cover, visitor, photos }) {
           user.id,
           user.token
         );
-        if (new_post === "ok") {
+
+        if (new_post.status === "ok") {
           setLoading(false);
           setCoverPicture("");
-
-          cRef.current.src = res[0].url;
+          setCover(updated_picture.data);
         } else {
           setLoading(false);
           setError(updated_picture);
@@ -173,9 +173,7 @@ export default function Cover({ cover, visitor, photos }) {
         </div>
       )}
 
-      {cover && !coverPicture && (
-        <img src={cover} className="cover" alt="" ref={cRef} />
-      )}
+      {cover && !coverPicture && <img src={cover} className="cover" alt="" />}
       {!visitor && (
         <div className="udpate_cover_wrapper">
           <div

@@ -37,8 +37,9 @@ const userschema = mongoose.Schema(
     },
     cover: {
       type: "string",
-      default: "",
       trim: true,
+      default:
+        "https://res.cloudinary.com/facebook-clone-web/image/upload/v1659693096/default_pic_jeaybr_i0drjq.png",
     },
     gender: {
       type: "string",
@@ -65,28 +66,42 @@ const userschema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    friends: {
-      type: Array,
-      default: [],
-    },
-    following: {
-      type: Array,
-      default: [],
-    },
-    followers: {
-      type: Array,
-      default: [],
-    },
-    requests: {
-      type: Array,
-      default: [],
-    },
-    search: {
-      user: {
+    friends: [
+      {
         type: ObjectId,
         ref: "User",
       },
-    },
+    ],
+    following: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
+    followers: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
+    requests: [
+      {
+        type: ObjectId,
+        ref: "User",
+      },
+    ],
+    search: [
+      {
+        user: {
+          type: ObjectId,
+          ref: "User",
+        },
+        createdAt: {
+          type: Date,
+          required: true,
+        },
+      },
+    ],
     details: {
       bio: {
         type: String,
@@ -120,7 +135,7 @@ const userschema = mongoose.Schema(
         type: String,
       },
     },
-    savedPost: [
+    savedPosts: [
       {
         post: {
           type: ObjectId,
@@ -128,7 +143,7 @@ const userschema = mongoose.Schema(
         },
         savedAt: {
           type: Date,
-          default: new Date(),
+          required: true,
         },
       },
     ],

@@ -35,11 +35,12 @@ const postSchema = new mongoose.Schema(
         },
         commentAt: {
           type: Date,
-          default: new Date(),
+          required: true,
         },
       },
     ],
   },
   { timestamps: true }
 );
+
 module.exports = mongoose.model("Post", postSchema);

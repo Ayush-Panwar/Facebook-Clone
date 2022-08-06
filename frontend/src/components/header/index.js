@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {
   ArrowDown,
   Friends,
+  FriendsActive,
   Gaming,
   Home,
   HomeActive,
@@ -20,9 +21,8 @@ import { useRef, useState } from "react";
 import AllMenu from "./AllMenu";
 import useClickOutside from "../../helpers/clickOutside";
 import UserMenu from "./userMenu";
-export default function Header({ page }) {
+export default function Header({ page, getAllPosts }) {
   const { user } = useSelector((user) => ({ ...user }));
-  console.log(user);
   const color = "#65676b";
   const [showSeachMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);
@@ -58,17 +58,25 @@ export default function Header({ page }) {
         </div>
       </div>
       {showSeachMenu && (
-        <SearchMenu color={color} setShowSearchMenu={setShowSearchMenu} />
+        <SearchMenu
+          color={color}
+          setShowSearchMenu={setShowSearchMenu}
+          token={user.token}
+        />
       )}
       <div className="header_middle">
         <Link
           to="/"
-          className={`middle_icon ${page === "home" ? "active" : ""}`}
+          className={`middle_icon ${page === "home" ? "active" : "hover1"}`}
+          onClick={() => getAllPosts()}
         >
           {page === "home" ? <HomeActive /> : <Home color={color} />}
         </Link>
-        <Link to="/" className="middle_icon hover1">
-          <Friends color={color} />
+        <Link
+          to="/friends"
+          className={`middle_icon ${page === "friends" ? "active" : "hover1"}`}
+        >
+          {page === "friends" ? <FriendsActive /> : <Friends color={color} />}
         </Link>
         <Link to="/" className="middle_icon hover1">
           <Watch color={color} />
@@ -100,7 +108,6 @@ export default function Header({ page }) {
               <Menu />
             </div>
           </div>
-
           {showAllMenu && <AllMenu />}
         </div>
         <div className="circle_icon hover1">

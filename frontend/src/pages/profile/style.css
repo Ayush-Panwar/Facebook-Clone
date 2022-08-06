@@ -18,6 +18,10 @@
   border-bottom-right-radius: 8px;
   background: var(--bg-secondary);
 }
+.friends_menu_wrap {
+  position: relative;
+}
+
 .cover {
   width: 100%;
   height: 100%;
@@ -74,6 +78,7 @@
   justify-content: space-between;
   padding: 0 1rem;
   margin-bottom: -2.8rem;
+  z-index: 1;
 }
 .profile_w_left {
   display: flex;
@@ -472,6 +477,11 @@
     transform: translateY(-10px);
   }
 }
+@media (max-width: 885px) {
+  .profile .post {
+    width: 100% !important;
+  }
+}
 @media (max-width: 650px) {
   .profile_menu_wrap {
     display: none;
@@ -514,4 +524,17 @@
   .friendship {
     transform: translateX(-2rem);
   }
+}
+.fix {
+  flex-direction: row !important;
+}
+.react-loading-skeleton {
+  --base-color: #ebebeb !important;
+  --highlight-color: #ddd !important;
+}
+.skeleton_loader {
+  height: 100px;
+  width: 100%;
+  display: grid;
+  place-items: center;
 }

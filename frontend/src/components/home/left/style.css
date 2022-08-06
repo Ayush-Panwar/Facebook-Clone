@@ -131,3 +131,6 @@
 .fb_copyright a:hover {
   text-decoration: underline;
 }
+.left_home .small_circle {
+  background: rgb(214, 214, 214);
+}
