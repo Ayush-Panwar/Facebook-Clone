@@ -19,11 +19,11 @@ import { useMediaQuery } from "react-responsive";
 import EditDetails from "../../components/intro/EditDetails";
 import { useStateIfMounted } from "use-state-if-mounted";
 import CreatePostPopup from "../../components/createPostPopup";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { HashLoader } from "react-spinners";
 
-export default function Profile({ getAllPosts }) {
+export default function Profile() {
   const [visible, setVisible] = useState(false);
   const { username } = useParams();
   const navigate = useNavigate();
@@ -49,6 +49,22 @@ export default function Profile({ getAllPosts }) {
     setOthername(profile?.details?.otherName);
     setCover(profile?.cover);
   }, [profile]);
+  const getAllPosts = async () => {
+    try {
+      dispatch({ type: "POSTS_REQUEST" });
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/getAllPost`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      dispatch({ type: "POSTS_SUCCESS", payload: data });
+    } catch (error) {
+      dispatch({ type: "POSTS_ERROR", payload: error.response.data.message });
+    }
+  };
 
   var visitor = userName === user.username ? false : true;
   // var visitor = false;
