@@ -43,6 +43,9 @@
 }
 
 /* ------------Header----------- */
+.dark .right_verification .circle_icon svg {
+  fill: var(--color-primary);
+}
 .dark .left_home .small_circle {
   background: var(--bg-fifth);
 }
@@ -73,6 +76,9 @@
 }
 .dark .add_pics_wrap i {
   filter: invert(100%);
+}
+.dark .verification_menu .menu_item svg {
+  fill: (var(--color-primary)) !important;
 }
 /* -------profile------- */
 .dark .active_link:hover {

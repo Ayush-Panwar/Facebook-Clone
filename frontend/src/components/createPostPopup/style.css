@@ -472,3 +472,8 @@
 .l0 {
   left: 0;
 }
+@media (max-height: 700px) {
+  .postBox .overflow_a {
+    max-height: 300px;
+  }
+}

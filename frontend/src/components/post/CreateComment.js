@@ -5,6 +5,7 @@ import { comment, createPost } from "../../functions/post";
 import { uploadImages } from "../../functions/uploadImages";
 import dataURItoBlob from "../../helpers/dataURItoBlob";
 import { ClipLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 export default function CreateComment({ user, postId, setComments, setCount }) {
   const [picker, setPicker] = useState(false);
@@ -87,7 +88,7 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
   };
   return (
     <div className="create_comment_wrap">
-      <div className="create_comment">
+      <Link to={`/profile/${user?.username}`} className="create_comment">
         <img src={user?.picture} alt="" />
         <div className="comment_input_wrap">
           {picker && (
@@ -142,7 +143,7 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
             <i className="sticker_icon"></i>
           </div>
         </div>
-      </div>
+      </Link>
       {commentImage && (
         <div className="comment_img_preview">
           <img src={commentImage} alt="" />

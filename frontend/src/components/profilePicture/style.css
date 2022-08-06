@@ -181,3 +181,21 @@
     transform: translateX(-2rem);
   }
 }
+@media (max-height: 920px) {
+  .postBox.update_img {
+    height: 705px;
+  }
+  .scrollable_content {
+    height: 635px;
+    overflow-y: scroll;
+  }
+}
+@media (max-height: 820px) {
+  .postBox.update_img {
+    height: 500px;
+  }
+  .scrollable_content {
+    height: 340px;
+    overflow-y: scroll;
+  }
+}

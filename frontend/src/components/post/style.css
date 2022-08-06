@@ -68,7 +68,9 @@
 .post_bg_text {
   color: #000;
 }
-
+.comment_actions span:hover {
+  text-decoration: underline;
+}
 /*-----------------------------GRID IMAGES----------------*/
 .grid_1 img {
   width: 100%;

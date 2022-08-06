@@ -61,7 +61,7 @@
 .details_wrapper {
   padding: 1rem;
   overflow-y: auto;
-  height: 75vh;
+  height: 580px;
 }
 .details_col {
   display: flex;
@@ -112,5 +112,13 @@
 @media (max-width: 810px) {
   .infosBox {
     width: 96% !important;
+  }
+}
+@media (max-height: 680px) {
+  .postBox.infosBox {
+    height: 500px;
+  }
+  .details_wrapper {
+    height: 430px;
   }
 }

@@ -33,13 +33,13 @@ const userschema = mongoose.Schema(
     },
     picture: {
       type: "string",
-      default: "",
+      default:
+        "https://res.cloudinary.com/facebook-clone-web/image/upload/v1659693096/default_pic_jeaybr_i0drjq.png",
     },
     cover: {
       type: "string",
       trim: true,
-      default:
-        "https://res.cloudinary.com/facebook-clone-web/image/upload/v1659693096/default_pic_jeaybr_i0drjq.png",
+      default: "",
     },
     gender: {
       type: "string",

@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import Friends from "./pages/friends";
+import NotVerifiedRoutes from "./routes/NotVerifiedRoutes";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -22,27 +23,29 @@ function App() {
       {visible && <CreatePostPopup user={user} setVisible={setVisible} />}
       <Routes>
         <Route element={<LoggedInRoutes />}>
-          <Route
-            path="/profile"
-            element={<Profile setVisible={setVisible} />}
-            exact
-          />
-          <Route
-            path="/profile/:username"
-            element={<Profile setVisible={setVisible} />}
-            exact
-          />
-          <Route
-            path="/friends"
-            element={<Friends setVisible={setVisible} />}
-            exact
-          />
-          <Route
-            path="/friends/:type"
-            element={<Friends setVisible={setVisible} />}
-            exact
-          />
-          <Route path="/" element={<Home setVisible={setVisible} />} exact />
+          <Route element={<NotVerifiedRoutes />}>
+            <Route
+              path="/profile"
+              element={<Profile setVisible={setVisible} />}
+              exact
+            />
+            <Route
+              path="/profile/:username"
+              element={<Profile setVisible={setVisible} />}
+              exact
+            />
+            <Route
+              path="/friends"
+              element={<Friends setVisible={setVisible} />}
+              exact
+            />
+            <Route
+              path="/friends/:type"
+              element={<Friends setVisible={setVisible} />}
+              exact
+            />
+            <Route path="/" element={<Home setVisible={setVisible} />} exact />
+          </Route>
           <Route path="/activate/:token" element={<Activate />} exact />
         </Route>
         <Route element={<NotLoggedInRoutes />}>

@@ -5,7 +5,6 @@ import LeftHome from "../../components/home/left";
 import RightHome from "../../components/home/right";
 import Stories from "../../components/home/stories";
 import CreatePost from "../../components/createPost";
-import SendVerification from "../../components/home/sendVerification";
 import Post from "../../components/post";
 import { useEffect, useReducer, useRef, useState } from "react";
 import { HashLoader } from "react-spinners";
@@ -54,7 +53,7 @@ export default function Home({ setVisible, setallPosts }) {
 
       <div className="home_middle" ref={middle}>
         <Stories />
-        {user.verified === false && <SendVerification user={user} />}
+
         <CreatePost user={user} setVisible={setVisible} />
         {loading ? (
           <div className="skeleton_loader">

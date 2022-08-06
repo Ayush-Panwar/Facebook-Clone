@@ -538,3 +538,12 @@
   display: grid;
   place-items: center;
 }
+@media (max-height: 830px) {
+  .postBox.pictureBox {
+    height: 480px;
+  }
+  .postBox .old_pictures_wrap {
+    height: 360px;
+    overflow-y: auto;
+  }
+}

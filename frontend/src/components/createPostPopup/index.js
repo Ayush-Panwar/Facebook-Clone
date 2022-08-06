@@ -24,7 +24,6 @@ export default function CreatePostPopup({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [background, setBackground] = useState("");
-
   useClickOutside(popup, () => {
     setVisible(false);
   });

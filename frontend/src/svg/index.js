@@ -21,6 +21,7 @@ import Public from "./public";
 import NewRoom from "./newRoom";
 import Home from "./home";
 import FriendsActive from "./friendsActive";
+import Download from "./download";
 
 export {
   Logo,
@@ -46,4 +47,5 @@ export {
   NewRoom,
   Home,
   FriendsActive,
+  Download,
 };

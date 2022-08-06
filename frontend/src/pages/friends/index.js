@@ -126,7 +126,7 @@ export default function Friends() {
             <div className="friends_right_wrap">
               <div className="friends_left_header">
                 <h3>Friend Requests</h3>
-                {type === undefined && (
+                {type === undefined && data.requests?.length !== 0 && (
                   <Link to="/friends/requests" className="see_link hover3">
                     See all
                   </Link>
@@ -134,38 +134,43 @@ export default function Friends() {
               </div>
 
               <div className="flex_wrap">
-                {data.requests &&
-                  data.requests.map((user) => (
-                    <Card
-                      userr={user}
-                      key={user._id}
-                      type="request"
-                      getData={getData}
-                    />
-                  ))}
+                {data.requests
+                  ? data.requests.map((user) => (
+                      <Card
+                        userr={user}
+                        key={user._id}
+                        type="request"
+                        getData={getData}
+                      />
+                    ))
+                  : ""}
               </div>
+              <span>No Request Received</span>
             </div>
           )}
           {(type === undefined || type === "sent") && (
             <div className="friends_right_wrap">
               <div className="friends_left_header">
                 <h3>Sent Requests</h3>
-                {type === undefined && (
+                {type === undefined && data?.sentRequests?.length !== 0 && (
                   <Link to="/friends/sent" className="see_link hover3">
                     See all
                   </Link>
                 )}
               </div>
               <div className="flex_wrap">
-                {data.sentRequests &&
-                  data.sentRequests.map((user) => (
+                {data?.sentRequests && data?.sentRequests.length !== 0 ? (
+                  data?.sentRequests.map((user) => (
                     <Card
                       userr={user}
                       key={user._id}
                       type="sent"
                       getData={getData}
                     />
-                  ))}
+                  ))
+                ) : (
+                  <span>No Request Sent</span>
+                )}
               </div>
             </div>
           )}
@@ -173,22 +178,25 @@ export default function Friends() {
             <div className="friends_right_wrap">
               <div className="friends_left_header">
                 <h3>Friends</h3>
-                {type === undefined && (
+                {type === undefined && data?.friends?.length !== 0 && (
                   <Link to="/friends/all" className="see_link hover3">
                     See all
                   </Link>
                 )}
               </div>
               <div className="flex_wrap">
-                {data.friends &&
-                  data.friends.map((user) => (
+                {data?.friends && data?.friends?.length !== 0 ? (
+                  data?.friends.map((user) => (
                     <Card
                       userr={user}
                       key={user._id}
                       type="friends"
                       getData={getData}
                     />
-                  ))}
+                  ))
+                ) : (
+                  <span>No Friend Available</span>
+                )}
               </div>
             </div>
           )}

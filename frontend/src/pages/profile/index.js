@@ -356,7 +356,7 @@ export default function Profile() {
                     Ad Choices <i className="ad_choices_icon"></i>{" "}
                   </Link>
                   <span>. </span>
-                  <Link to="/"></Link>Cookies <span>. </span>
+                  <Link to="/">Cookies</Link> <span>. </span>
                   <Link to="/">More </Link>
                   <span>. </span> <br />
                   Meta © 2022
