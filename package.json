@@ -1,0 +1,20 @@
+{
+  "name": "facebook-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false napm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayush-Panwar/Facebook-Clone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ayush-Panwar/Facebook-Clone/issues"
+  },
+  "homepage": "https://github.com/Ayush-Panwar/Facebook-Clone#readme"
+}
