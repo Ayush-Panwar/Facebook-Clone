@@ -31,15 +31,16 @@ export default function EmojiPickerBackgrounds({
     setCursorPosition(start.length + emoji.length);
   };
   const postBackgrounds = [
-    "../../../images/postbackgrounds/1.jpg",
-    "../../../images/postbackgrounds/2.jpg",
-    "../../../images/postbackgrounds/3.jpg",
-    "../../../images/postbackgrounds/4.jpg",
-    "../../../images/postbackgrounds/5.jpg",
-    "../../../images/postbackgrounds/6.jpg",
-    "../../../images/postbackgrounds/7.jpg",
-    "../../../images/postbackgrounds/8.jpg",
-    "../../../images/postbackgrounds/9.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/1_pg8sge.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/2_yzpwtc.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133882/postBackgrounds/3_pf5rsh.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/4_q4tfiz.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/5_imcqza.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/6_e0v2xj.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/7_cikapv.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/8_j9q3d4.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/9_ogecxo.jpg",
+    "https://res.cloudinary.com/facebook-clone-web/image/upload/v1660133883/postBackgrounds/10_cl3qtg.jpg",
   ];
   const backgroundHandler = (i) => {
     bgRef.current.style.backgroundImage = `url(${postBackgrounds[i]})`;

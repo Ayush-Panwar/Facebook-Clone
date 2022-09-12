@@ -88,8 +88,10 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
   };
   return (
     <div className="create_comment_wrap">
-      <Link to={`/profile/${user?.username}`} className="create_comment">
-        <img src={user?.picture} alt="" />
+      <div className="create_comment">
+        <Link to={`/profile/${user?.username}`}>
+          <img src={user?.picture} alt="" />
+        </Link>
         <div className="comment_input_wrap">
           {picker && (
             <div className="comment_emojis_picker">
@@ -143,7 +145,7 @@ export default function CreateComment({ user, postId, setComments, setCount }) {
             <i className="sticker_icon"></i>
           </div>
         </div>
-      </Link>
+      </div>
       {commentImage && (
         <div className="comment_img_preview">
           <img src={commentImage} alt="" />

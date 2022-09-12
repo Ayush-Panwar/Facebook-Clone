@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Header from "../../components/header";
@@ -49,7 +49,6 @@ export default function Friends() {
               </div>
               <span>Home</span>
             </Link>
-
             <Link
               to="/friends/requests"
               className={`mmenu_item hover3 ${
@@ -134,18 +133,19 @@ export default function Friends() {
               </div>
 
               <div className="flex_wrap">
-                {data.requests
-                  ? data.requests.map((user) => (
-                      <Card
-                        userr={user}
-                        key={user._id}
-                        type="request"
-                        getData={getData}
-                      />
-                    ))
-                  : ""}
+                {data.requests && data.requests.length !== 0 ? (
+                  data.requests.map((user) => (
+                    <Card
+                      userr={user}
+                      key={user._id}
+                      type="request"
+                      getData={getData}
+                    />
+                  ))
+                ) : (
+                  <span>No Request Received</span>
+                )}
               </div>
-              <span>No Request Received</span>
             </div>
           )}
           {(type === undefined || type === "sent") && (

@@ -10,6 +10,7 @@ app.use(express.json());
 const dotenv = require("dotenv");
 dotenv.config();
 const userRoutes = require("./routes/user");
+const path = require("path");
 
 //routes
 readdirSync("./routes").map((r) => app.use("/", require("./routes/" + r)));
@@ -20,17 +21,16 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() => console.log("database connected successfully"))
-  .catch((err) => console.log("error conecting mongodb connection", err));
+  .catch((err) => console.log("error conecting mongodb connection ", err));
 
+const _dirname1 = path.resolve();
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(_dirname1, "/frontend/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(_dirname1, "frontend", "build", "index.html"));
+  });
+}
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}...`);
 });
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
-  });
-}

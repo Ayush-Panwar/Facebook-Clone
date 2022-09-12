@@ -21,7 +21,10 @@ export default function UserMenu({ user }) {
     <div className="mmenu">
       {visible === 0 && (
         <div>
-          <Link to="/" className="mmenu_header hover3">
+          <Link
+            to={`/profile/${user?.username}`}
+            className="mmenu_header hover3"
+          >
             <img src={user?.picture} alt="" />
             <div className="mmenu_col">
               <span>

@@ -195,7 +195,7 @@
     height: 500px;
   }
   .scrollable_content {
-    height: 340px;
+    height: 440px;
     overflow-y: scroll;
   }
 }

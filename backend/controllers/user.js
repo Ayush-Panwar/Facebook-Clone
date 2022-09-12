@@ -49,7 +49,7 @@ exports.register = async (req, res) => {
 
     if (!validateLength(last_name, 3, 30)) {
       return res.status(400).json({
-        message: "last name must be between 3 and 3 characters",
+        message: "last name must be between 3 and 3 characters ",
       });
     }
     if (!validateLength(password, 6, 40)) {
@@ -168,7 +168,9 @@ exports.sendverification = async (req, res) => {
       { id: user._id.toString() },
       "30m"
     );
+
     const url = `${process.env.BASE_URL}/activate/${emailverificationToken}`;
+
     sendverificationEmail(user.email, user.first_name, url);
     return res.status(200).json({
       message: "Email verification link has been sent to your email.",
