@@ -23,7 +23,7 @@ mongoose
   .then(() => console.log("database connected successfully"))
   .catch((err) => console.log("error conecting mongodb connection ", err));
 
-const _dirname1 = path.resolve();
+const _dirname1 = path.resolve(__dirname, "..");
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(_dirname1, "/frontend/build")));
   app.get("*", (req, res) => {
