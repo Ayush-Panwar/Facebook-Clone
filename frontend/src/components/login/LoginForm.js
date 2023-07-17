@@ -49,7 +49,10 @@ export default function LoginForm({ setVisible }) {
   return (
     <div className="login_wrap">
       <div className="login_1">
-        <img src="../../icons/facebook.svg" alt="" />
+        <img
+          src="https://static.xx.fbcdn.net/rsrc.php/y8/r/dF5SId3UHWd.svg"
+          alt=""
+        />
         <span>
           Facebook helps you connect and share with the people in your Life
         </span>
