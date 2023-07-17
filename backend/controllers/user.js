@@ -195,7 +195,7 @@ exports.findUser = async (req, res) => {
   }
 };
 
-exports.sendRestPasswordCode = async (req, res) => {
+exports.sendResetPasswordCode = async (req, res) => {
   try {
     const { email } = req.body;
     const user = await User.findOne({ email }).select("-password");

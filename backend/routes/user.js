@@ -6,7 +6,7 @@ const {
   auth,
   sendverification,
   findUser,
-  sendRestPasswordCode,
+  sendResetPasswordCode,
   validateResetCode,
   changePassword,
   getProfile,
@@ -36,7 +36,7 @@ router.post("/activate", authUser, activateAccount);
 router.post("/login", login);
 router.post("/sendVerification", authUser, sendverification);
 router.post("/findUser", findUser);
-router.post("/sendResetPasswordCode", sendRestPasswordCode);
+router.post("/sendResetPasswordCode", sendResetPasswordCode);
 router.post("/validateResetCode", validateResetCode);
 router.post("/changePassword", changePassword);
 router.get("/getProfile/:username", authUser, getProfile);
